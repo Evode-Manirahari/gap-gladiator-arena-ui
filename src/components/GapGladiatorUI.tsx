@@ -16,6 +16,14 @@ const GapGladiatorUI = () => {
   const [showProductMenu, setShowProductMenu] = useState(false);
   const [showCompetitorMenu, setShowCompetitorMenu] = useState(false);
 
+  const toggleProductMenu = () => {
+    setShowProductMenu(!showProductMenu);
+  };
+
+  const toggleCompetitorMenu = () => {
+    setShowCompetitorMenu(!showCompetitorMenu);
+  };
+
   return (
     <div className="min-h-screen w-full bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 transition-colors">
       {/* Brand Name - Fixed at top left */}
@@ -25,7 +33,7 @@ const GapGladiatorUI = () => {
         </h3>
       </div>
 
-      <div className="max-w-6xl mx-auto p-8 pt-40 space-y-12">
+      <div className="max-w-5xl mx-auto p-8 pt-40 space-y-12">
         {/* Header */}
         <header className="text-center">
           <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-4">
@@ -50,18 +58,18 @@ const GapGladiatorUI = () => {
               value={productSpec}
               onChange={(e) => setProductSpec(e.target.value)}
             />
-            {/* Plus icon in bottom left corner like Claude AI */}
-            <div className="relative">
+            {/* Plus icon in left corner */}
+            <div className="absolute top-8 left-8">
               <button 
-                onClick={() => setShowProductMenu(!showProductMenu)}
-                className="absolute bottom-12 left-12 w-12 h-12 rounded-full bg-gradient-to-br from-yellow-200 via-yellow-100 to-green-300 shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center cursor-pointer hover:scale-105"
+                onClick={toggleProductMenu}
+                className="w-6 h-6 rounded-full bg-gradient-to-br from-yellow-200 via-yellow-100 to-green-300 shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center cursor-pointer hover:scale-105"
               >
-                <Plus className="w-6 h-6 text-zinc-700" />
+                <Plus className="w-3 h-3 text-zinc-700" />
               </button>
               
               {/* Dropdown Menu */}
               {showProductMenu && (
-                <div className="absolute bottom-24 left-12 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl shadow-lg p-3 min-w-56 z-10">
+                <div className="absolute top-8 left-0 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl shadow-lg p-3 min-w-56 z-10">
                   <button className="w-full flex items-center gap-4 px-4 py-3 text-base text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700 rounded-lg transition-colors">
                     <Upload className="w-5 h-5" />
                     Upload a file
@@ -95,18 +103,18 @@ const GapGladiatorUI = () => {
               value={competitorSpec}
               onChange={(e) => setCompetitorSpec(e.target.value)}
             />
-            {/* Plus icon in bottom left corner like Claude AI */}
-            <div className="relative">
+            {/* Plus icon in left corner */}
+            <div className="absolute top-8 left-8">
               <button 
-                onClick={() => setShowCompetitorMenu(!showCompetitorMenu)}
-                className="absolute bottom-12 left-12 w-12 h-12 rounded-full bg-gradient-to-br from-yellow-200 via-yellow-100 to-green-300 shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center cursor-pointer hover:scale-105"
+                onClick={toggleCompetitorMenu}
+                className="w-6 h-6 rounded-full bg-gradient-to-br from-yellow-200 via-yellow-100 to-green-300 shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center cursor-pointer hover:scale-105"
               >
-                <Plus className="w-6 h-6 text-zinc-700" />
+                <Plus className="w-3 h-3 text-zinc-700" />
               </button>
               
               {/* Dropdown Menu */}
               {showCompetitorMenu && (
-                <div className="absolute bottom-24 left-12 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl shadow-lg p-3 min-w-56 z-10">
+                <div className="absolute top-8 left-0 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl shadow-lg p-3 min-w-56 z-10">
                   <button className="w-full flex items-center gap-4 px-4 py-3 text-base text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700 rounded-lg transition-colors">
                     <Upload className="w-5 h-5" />
                     Upload a file
