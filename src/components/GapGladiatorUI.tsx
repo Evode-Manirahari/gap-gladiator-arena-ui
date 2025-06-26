@@ -33,13 +33,13 @@ const GapGladiatorUI = () => {
         </h3>
       </div>
 
-      <div className="max-w-5xl mx-auto p-8 pt-40 space-y-12">
+      <div className="max-w-5xl mx-auto p-8 pt-32 space-y-8">
         {/* Header */}
         <header className="text-center">
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
             Gap Gladiator Arena
           </h1>
-          <p className="text-lg md:text-xl text-zinc-500 dark:text-zinc-400 font-medium">
+          <p className="text-base md:text-lg text-zinc-500 dark:text-zinc-400 font-medium">
             Enterprise AI-powered feature prioritization and competitive analysis
           </p>
         </header>
