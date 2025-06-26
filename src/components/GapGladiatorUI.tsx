@@ -61,18 +61,18 @@ const GapGladiatorUI = () => {
               value={productSpec}
               onChange={(e) => setProductSpec(e.target.value)}
             />
-            {/* Plus icon positioned at bottom right of textarea */}
+            {/* Plus icon positioned at bottom left of textarea */}
             <div className="relative">
               <button 
                 onClick={() => handleMenuToggle('product')}
-                className="absolute -top-12 right-3 w-6 h-6 rounded-full bg-gradient-to-br from-yellow-200 via-yellow-100 to-green-300 shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center cursor-pointer hover:scale-105"
+                className="absolute -top-12 left-3 w-6 h-6 rounded-full bg-gradient-to-br from-yellow-200 via-yellow-100 to-green-300 shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center cursor-pointer hover:scale-105"
               >
                 <Plus className="w-3 h-3 text-zinc-700" />
               </button>
               
               {/* Dropdown Menu */}
               {showProductMenu && (
-                <div className="absolute -top-44 right-0 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg shadow-lg p-2 min-w-48 z-10">
+                <div className="absolute -top-44 left-0 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg shadow-lg p-2 min-w-48 z-10">
                   <button className="w-full flex items-center gap-3 px-3 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700 rounded-md transition-colors">
                     <Upload className="w-4 h-4" />
                     Upload a file
@@ -106,18 +106,18 @@ const GapGladiatorUI = () => {
               value={competitorSpec}
               onChange={(e) => setCompetitorSpec(e.target.value)}
             />
-            {/* Plus icon positioned at bottom right of textarea */}
+            {/* Plus icon positioned at bottom left of textarea */}
             <div className="relative">
               <button 
                 onClick={() => handleMenuToggle('competitor')}
-                className="absolute -top-12 right-3 w-6 h-6 rounded-full bg-gradient-to-br from-yellow-200 via-yellow-100 to-green-300 shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center cursor-pointer hover:scale-105"
+                className="absolute -top-12 left-3 w-6 h-6 rounded-full bg-gradient-to-br from-yellow-200 via-yellow-100 to-green-300 shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center cursor-pointer hover:scale-105"
               >
                 <Plus className="w-3 h-3 text-zinc-700" />
               </button>
               
               {/* Dropdown Menu */}
               {showCompetitorMenu && (
-                <div className="absolute -top-44 right-0 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg shadow-lg p-2 min-w-48 z-10">
+                <div className="absolute -top-44 left-0 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg shadow-lg p-2 min-w-48 z-10">
                   <button className="w-full flex items-center gap-3 px-3 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700 rounded-md transition-colors">
                     <Upload className="w-4 h-4" />
                     Upload a file
