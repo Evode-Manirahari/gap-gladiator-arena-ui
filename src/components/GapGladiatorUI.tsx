@@ -58,8 +58,8 @@ const GapGladiatorUI = () => {
               value={productSpec}
               onChange={(e) => setProductSpec(e.target.value)}
             />
-            {/* Plus icon in left corner */}
-            <div className="absolute top-8 left-8">
+            {/* Plus icon in bottom left corner */}
+            <div className="absolute bottom-8 left-8">
               <button 
                 onClick={toggleProductMenu}
                 className="w-6 h-6 rounded-full bg-gradient-to-br from-yellow-200 via-yellow-100 to-green-300 shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center cursor-pointer hover:scale-105"
@@ -69,7 +69,7 @@ const GapGladiatorUI = () => {
               
               {/* Dropdown Menu */}
               {showProductMenu && (
-                <div className="absolute top-8 left-0 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl shadow-lg p-3 min-w-56 z-10">
+                <div className="absolute bottom-8 left-0 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl shadow-lg p-3 min-w-56 z-10">
                   <button className="w-full flex items-center gap-4 px-4 py-3 text-base text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700 rounded-lg transition-colors">
                     <Upload className="w-5 h-5" />
                     Upload a file
@@ -103,8 +103,8 @@ const GapGladiatorUI = () => {
               value={competitorSpec}
               onChange={(e) => setCompetitorSpec(e.target.value)}
             />
-            {/* Plus icon in left corner */}
-            <div className="absolute top-8 left-8">
+            {/* Plus icon in bottom left corner */}
+            <div className="absolute bottom-8 left-8">
               <button 
                 onClick={toggleCompetitorMenu}
                 className="w-6 h-6 rounded-full bg-gradient-to-br from-yellow-200 via-yellow-100 to-green-300 shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center cursor-pointer hover:scale-105"
@@ -114,7 +114,7 @@ const GapGladiatorUI = () => {
               
               {/* Dropdown Menu */}
               {showCompetitorMenu && (
-                <div className="absolute top-8 left-0 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl shadow-lg p-3 min-w-56 z-10">
+                <div className="absolute bottom-8 left-0 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl shadow-lg p-3 min-w-56 z-10">
                   <button className="w-full flex items-center gap-4 px-4 py-3 text-base text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700 rounded-lg transition-colors">
                     <Upload className="w-5 h-5" />
                     Upload a file
