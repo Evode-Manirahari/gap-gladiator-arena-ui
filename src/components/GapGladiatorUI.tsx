@@ -22,10 +22,6 @@ const GapGladiatorUI = () => {
   const [showProductMenu, setShowProductMenu] = useState(false);
   const [showCompetitorMenu, setShowCompetitorMenu] = useState(false);
   const [isAutoSaving, setIsAutoSaving] = useState(false);
-  const [dragStates, setDragStates] = useState({
-    product: false,
-    competitor: false
-  });
   const { toast } = useToast();
   
   const productFileRef = useRef<HTMLInputElement>(null);
@@ -42,7 +38,6 @@ const GapGladiatorUI = () => {
       }
       
       autoSaveTimeoutRef.current = setTimeout(() => {
-        // Simulate auto-save
         localStorage.setItem('gap-gladiator-product', productSpec);
         localStorage.setItem('gap-gladiator-competitor', competitorSpec);
         setIsAutoSaving(false);
@@ -81,27 +76,6 @@ const GapGladiatorUI = () => {
     } else {
       setShowCompetitorMenu(!showCompetitorMenu);
       setShowProductMenu(false);
-    }
-  };
-
-  // Drag and drop handlers
-  const handleDragOver = (e: React.DragEvent, type: 'product' | 'competitor') => {
-    e.preventDefault();
-    setDragStates(prev => ({ ...prev, [type]: true }));
-  };
-
-  const handleDragLeave = (e: React.DragEvent, type: 'product' | 'competitor') => {
-    e.preventDefault();
-    setDragStates(prev => ({ ...prev, [type]: false }));
-  };
-
-  const handleDrop = (e: React.DragEvent, type: 'product' | 'competitor') => {
-    e.preventDefault();
-    setDragStates(prev => ({ ...prev, [type]: false }));
-    
-    const files = Array.from(e.dataTransfer.files);
-    if (files.length > 0) {
-      handleFileUpload(files[0], type);
     }
   };
 
@@ -161,7 +135,7 @@ const GapGladiatorUI = () => {
         </div>
       )}
 
-      {/* Brand Name - Enhanced */}
+      {/* Brand Name */}
       <div className="fixed top-8 left-8 z-20 flex items-center gap-2">
         <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
           <Sparkles className="w-4 h-4 text-white" />
@@ -172,7 +146,7 @@ const GapGladiatorUI = () => {
       </div>
 
       <div className="max-w-4xl mx-auto p-8 pt-32 space-y-12">
-        {/* Enhanced Header */}
+        {/* Header */}
         <header className="text-center space-y-4">
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 px-4 py-2 rounded-full border border-blue-200 dark:border-blue-800 mb-6">
             <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">ENTERPRISE AI-POWERED</span>
@@ -185,19 +159,10 @@ const GapGladiatorUI = () => {
           </p>
         </header>
 
-        {/* Enhanced Form Boxes */}
+        {/* Form Boxes */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Product Spec - Enhanced */}
-          <div 
-            className={`group relative rounded-3xl border-2 transition-all duration-300 p-8 ${
-              dragStates.product 
-                ? 'border-blue-400 bg-blue-50/50 dark:bg-blue-900/20 dark:border-blue-500' 
-                : 'border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-600'
-            } shadow-lg hover:shadow-xl`}
-            onDragOver={(e) => handleDragOver(e, 'product')}
-            onDragLeave={(e) => handleDragLeave(e, 'product')}
-            onDrop={(e) => handleDrop(e, 'product')}
-          >
+          {/* Product Spec */}
+          <div className="group relative rounded-3xl border-2 border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-600 shadow-lg hover:shadow-xl transition-all duration-300 p-8">
             <div className="flex items-start justify-between mb-6">
               <div>
                 <h2 className="text-xl font-bold mb-2 text-zinc-900 dark:text-zinc-100">Your Product Spec</h2>
@@ -215,38 +180,25 @@ const GapGladiatorUI = () => {
               </div>
             </div>
             
-            <div className="relative">
-              <textarea
-                className="w-full h-40 rounded-xl border border-zinc-300 dark:border-zinc-600 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
-                placeholder="Describe your product, paste your roadmap, or drag & drop a file here..."
-                value={productSpec}
-                onChange={(e) => setProductSpec(e.target.value)}
-                maxLength={2000}
-                aria-label="Product specification input"
-              />
-              
-              {dragStates.product && (
-                <div className="absolute inset-0 flex items-center justify-center bg-blue-50/90 dark:bg-blue-900/50 rounded-xl border-2 border-dashed border-blue-400 dark:border-blue-500">
-                  <div className="text-center">
-                    <Upload className="w-8 h-8 text-blue-500 mx-auto mb-2" />
-                    <p className="text-blue-600 dark:text-blue-400 font-medium">Drop your file here</p>
-                  </div>
-                </div>
-              )}
-            </div>
+            <textarea
+              className="w-full h-40 rounded-xl border border-zinc-300 dark:border-zinc-600 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
+              placeholder="Describe your product, paste your roadmap, or upload a file..."
+              value={productSpec}
+              onChange={(e) => setProductSpec(e.target.value)}
+              maxLength={2000}
+            />
 
-            {/* Enhanced Plus Menu */}
+            {/* Plus Menu */}
             <div className="relative mt-4">
               <button 
                 onClick={() => handleMenuToggle('product')}
                 className="absolute -top-16 left-4 w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 via-blue-500 to-purple-600 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center cursor-pointer hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
-                aria-label="Add product content"
               >
                 <Plus className="w-4 h-4 text-white" />
               </button>
               
               {showProductMenu && (
-                <div className="absolute -top-60 left-0 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl shadow-xl p-3 min-w-56 z-10 animate-fade-in">
+                <div className="absolute -top-60 left-0 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl shadow-xl p-3 min-w-56 z-10">
                   <input
                     type="file"
                     ref={productFileRef}
@@ -278,17 +230,8 @@ const GapGladiatorUI = () => {
             </div>
           </div>
 
-          {/* Competitor Spec - Enhanced */}
-          <div 
-            className={`group relative rounded-3xl border-2 transition-all duration-300 p-8 ${
-              dragStates.competitor 
-                ? 'border-purple-400 bg-purple-50/50 dark:bg-purple-900/20 dark:border-purple-500' 
-                : 'border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-600'
-            } shadow-lg hover:shadow-xl`}
-            onDragOver={(e) => handleDragOver(e, 'competitor')}
-            onDragLeave={(e) => handleDragLeave(e, 'competitor')}
-            onDrop={(e) => handleDrop(e, 'competitor')}
-          >
+          {/* Competitor Spec */}
+          <div className="group relative rounded-3xl border-2 border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-600 shadow-lg hover:shadow-xl transition-all duration-300 p-8">
             <div className="flex items-start justify-between mb-6">
               <div>
                 <h2 className="text-xl font-bold mb-2 text-zinc-900 dark:text-zinc-100">Key Competitor</h2>
@@ -306,38 +249,25 @@ const GapGladiatorUI = () => {
               </div>
             </div>
             
-            <div className="relative">
-              <textarea
-                className="w-full h-40 rounded-xl border border-zinc-300 dark:border-zinc-600 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 resize-none"
-                placeholder="Describe your competitor, their features, or drag & drop analysis here..."
-                value={competitorSpec}
-                onChange={(e) => setCompetitorSpec(e.target.value)}
-                maxLength={2000}
-                aria-label="Competitor specification input"
-              />
-              
-              {dragStates.competitor && (
-                <div className="absolute inset-0 flex items-center justify-center bg-purple-50/90 dark:bg-purple-900/50 rounded-xl border-2 border-dashed border-purple-400 dark:border-purple-500">
-                  <div className="text-center">
-                    <Upload className="w-8 h-8 text-purple-500 mx-auto mb-2" />
-                    <p className="text-purple-600 dark:text-purple-400 font-medium">Drop your file here</p>
-                  </div>
-                </div>
-              )}
-            </div>
+            <textarea
+              className="w-full h-40 rounded-xl border border-zinc-300 dark:border-zinc-600 bg-zinc-50 dark:bg-zinc-900 p-4 text-sm placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 resize-none"
+              placeholder="Describe your competitor, their features, or upload analysis..."
+              value={competitorSpec}
+              onChange={(e) => setCompetitorSpec(e.target.value)}
+              maxLength={2000}
+            />
 
-            {/* Enhanced Plus Menu */}
+            {/* Plus Menu */}
             <div className="relative mt-4">
               <button 
                 onClick={() => handleMenuToggle('competitor')}
                 className="absolute -top-16 left-4 w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 via-purple-500 to-pink-600 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center cursor-pointer hover:scale-110 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2"
-                aria-label="Add competitor content"
               >
                 <Plus className="w-4 h-4 text-white" />
               </button>
               
               {showCompetitorMenu && (
-                <div className="absolute -top-60 left-0 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl shadow-xl p-3 min-w-56 z-10 animate-fade-in">
+                <div className="absolute -top-60 left-0 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl shadow-xl p-3 min-w-56 z-10">
                   <input
                     type="file"
                     ref={competitorFileRef}
@@ -370,7 +300,7 @@ const GapGladiatorUI = () => {
           </div>
         </div>
 
-        {/* Enhanced Start Button */}
+        {/* Start Button */}
         <div className="text-center space-y-4">
           <button
             onClick={handleStartBattle}
@@ -381,7 +311,6 @@ const GapGladiatorUI = () => {
             <span>Start Battle</span>
             <span className="text-sm opacity-80">(2 min)</span>
             
-            {/* Animated background */}
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
           </button>
           
